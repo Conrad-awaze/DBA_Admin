@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VRUKL">
+      <DataSourceReference>VRUKL</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>7ce74932-3bb1-44cd-8d8d-63a7c0382a8a</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>VRUKL</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@BookedFrom">
+            <Value>=Parameters!BookedFrom.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@BookedTo">
+            <Value>=Parameters!BookedTo.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT	/*CASE WHEN CP.Email &lt; 1 THEN '@' ELSE '' END +*/ REPLACE(ISNULL(C.mail, ''),char(0), '') Mail,
+	/*CASE WHEN CP.Phone &lt; 1 THEN '@' ELSE '' END +*/ REPLACE(ISNULL(C.Fax, ''),char(0), '') Fax,
+	/*CASE WHEN CP.SMS &lt; 1 THEN '@' ELSE '' END +*/ REPLACE(ISNULL(C.Mobile, ''),char(0), '') Mobile,
+	/*CASE WHEN CP.Post &lt; 1 THEN '@' ELSE '' END +*/
+	REPLACE(REPLACE(REPLACE(ISNULL(LTRIM(RTRIM(C.Address)), ''), CHAR(13) + CHAR(10), '\r\n'), '  ', ''), char(0), '') + '\r\n' +
+	REPLACE(REPLACE(LTRIM(RTRIM(ISNULL(C.City,''))), '  ', ''), char(0), '') + '\r\n'  +
+	REPLACE(REPLACE(LTRIM(RTRIM(ISNULL(State,''))), '  ', ''), char(0), '')  + '\r\n' +
+	REPLACE(REPLACE(LTRIM(RTRIM(ISNULL(Zip,''))), '  ', ''), char(0), '') [Post],
+	B.ID as BookingID
+FROM	Booking B 
+	INNER JOIN Quote Q ON B.QuoteID = Q.ID
+	INNER JOIN Client C ON C.ID = B.ClientID
+	/* note that in other databases, the the client company contact permissions table contains info
+	on whether or not they are allowed to be contacted via that method.
+	placing an @ sign before a contact detail in this selector tells brease that 
+	they are not permitted to be contacted via this method, and thus shouldnt be used
+	however it can be overridden by ticking a setting in brease
+	(this is used for example, so that a client wont receive advertisement style reports
+	but if something happens on their booking, the protection could be overridden so they receive that)
+	Since clientcompanycontactpermissions doesnt seem to exist in thg, i've skipped it*/
+	/*LEFT OUTER JOIN ClientCompanyContactPermissions CP ON C.ID = CP.ClientID AND CP.CompanyID = 1*/
+WHERE	B.SID = 2640 /* confirmed only*/
+AND	(B.Created &gt;= @BookedFrom OR @BookedFrom IS NULL)
+AND	(B.Created &lt;= @BookedTo OR @BookedTo IS NULL)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Mail">
+          <DataField>Mail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Fax">
+          <DataField>Fax</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Mobile">
+          <DataField>Mobile</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Post">
+          <DataField>Post</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BookingID">
+          <DataField>BookingID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Selector">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.5cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.33334cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.33334cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.33334cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.63492cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="BookingID">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!BookingID.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>BookingID</rd:DefaultName>
+                          <Style>
+                            <Border />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Email">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Mail.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <Border />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Fax">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Fax.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Fax</rd:DefaultName>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Post">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Post.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Post</rd:DefaultName>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Selector_Details_Group">
+                    <DataElementName>Detail</DataElementName>
+                  </Group>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                  <DataElementName>Detail_Collection</DataElementName>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>0.00004cm</Top>
+            <Height>0.63492cm</Height>
+            <Width>18.50002cm</Width>
+            <Style />
+          </Tablix>
+        </ReportItems>
+        <Height>0.25in</Height>
+        <Style />
+      </Body>
+      <Width>7.28347in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="BookedFrom">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>Booked From</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="BookedTo">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>Booked To</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>2</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>BookedFrom</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>BookedTo</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>97b67dbe-c967-49d9-817e-171280fbc3fe</rd:ReportID>
+</Report>

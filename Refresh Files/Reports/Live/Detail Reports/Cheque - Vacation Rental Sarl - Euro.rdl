@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>17.5cm</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>8.02cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Rectangle Name="Rectangle1">
+                      <ReportItems>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Location.Value</Value>
+                                  <Style>
+                                    <FontFamily>Courier New</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Top>3.48cm</Top>
+                          <Left>13.29cm</Left>
+                          <Height>0.5cm</Height>
+                          <Width>4.1cm</Width>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Bottom</VerticalAlign>
+                            <PaddingLeft>0.1cm</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Date.Value</Value>
+                                  <Style>
+                                    <FontFamily>Courier New</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Top>3.98cm</Top>
+                          <Left>13.29cm</Left>
+                          <Height>0.5cm</Height>
+                          <Width>4.1cm</Width>
+                          <ZIndex>1</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Bottom</VerticalAlign>
+                            <PaddingLeft>0.1cm</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Payee.Value</Value>
+                                  <Style>
+                                    <FontFamily>Courier New</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Top>2.92528cm</Top>
+                          <Left>0.9cm</Left>
+                          <Height>0.5cm</Height>
+                          <Width>11.25cm</Width>
+                          <ZIndex>2</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Bottom</VerticalAlign>
+                            <PaddingLeft>0.1cm</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>TextEuros1</Label>
+                                  <Value>=Code.TextEuros1Content(Code.TextEurosFullString(Fields!TextEuros.Value, Fields!FractionalUnit.Value))</Value>
+                                  <Style>
+                                    <FontFamily>Courier New</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Top>1.89cm</Top>
+                          <Left>5.3cm</Left>
+                          <Height>0.5cm</Height>
+                          <Width>6.85cm</Width>
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Bottom</VerticalAlign>
+                            <PaddingLeft>0.1cm</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Amount.Value</Value>
+                                  <Style>
+                                    <FontFamily>Courier New</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <Top>2.5cm</Top>
+                          <Left>13.09cm</Left>
+                          <Height>0.98cm</Height>
+                          <Width>4.1cm</Width>
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>0.1cm</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="Textbox6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>TextEuros2</Label>
+                                  <Value>=Code.TextEuros2Content(Code.TextEurosFullString(Fields!TextEuros.Value, Fields!FractionalUnit.Value))</Value>
+                                  <Style>
+                                    <FontFamily>Courier New</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Top>2.39cm</Top>
+                          <Left>0.9cm</Left>
+                          <Height>0.5cm</Height>
+                          <Width>11.25cm</Width>
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Bottom</VerticalAlign>
+                            <PaddingLeft>0.1cm</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                      </ReportItems>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Rectangle>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>ChequeDataSet</DataSetName>
+        <Height>8.02cm</Height>
+        <Width>17.5cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>8.02cm</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
+  </Body>
+  <Width>17.5cm</Width>
+  <Page>
+    <PageHeight>8.02cm</PageHeight>
+    <PageWidth>17.5cm</PageWidth>
+    <InteractiveHeight>0cm</InteractiveHeight>
+    <InteractiveWidth>17.5cm</InteractiveWidth>
+    <LeftMargin>0cm</LeftMargin>
+    <RightMargin>0cm</RightMargin>
+    <TopMargin>0cm</TopMargin>
+    <BottomMargin>0cm</BottomMargin>
+    <ColumnSpacing>1.27cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="THG">
+      <DataSourceReference>THG</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>39d8425d-7b2c-4aea-9a54-5e5eb21205c6</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ChequeDataSet">
+      <Query>
+        <DataSourceName>THG</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@LineUp">
+            <Value>=Parameters!LineUp.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@PaymentRunID">
+            <Value>=Parameters!PaymentRunID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Language">
+            <Value>FR</Value>
+          </QueryParameter>
+          <QueryParameter Name="@CurrencyID">
+            <Value>=Parameters!CurrencyID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LineUpNumber">
+            <Value>=Parameters!LineUpNumber.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>spThgReportChequeStandardEuroDesign</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Payee">
+          <DataField>Payee</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TextEuros">
+          <DataField>TextEuros</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FractionalUnit">
+          <DataField>FractionalUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Location">
+          <DataField>Location</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="LineUp">
+      <DataType>Boolean</DataType>
+      <Prompt>Line Up</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PaymentRunID">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>Payment Run ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="LineUpNumber">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>Line Up Number</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CurrencyID">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>Currency ID</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>    Function TextEurosSplitIndex(ByVal TextEuros As String, ByVal TextBoxNumber As Integer) As Integer
+
+        Dim textEurosLength As Integer = TextEuros.Length
+        Dim TextEurosSubstring As String
+        Dim index As Integer = -1
+        Dim isSpaceChar As Boolean = False
+        Dim spaceIndex As Integer
+        Dim dashIndex As Integer
+
+        If (textEurosLength &lt;= 31) Then
+            Return -1
+        End If
+
+        TextEurosSubstring  = TextEuros.Substring(0, 32)
+
+        While True
+            spaceIndex = TextEurosSubstring.IndexOf(" ", index + 1, TextEurosSubstring.Length - index - 1)
+            dashIndex = TextEurosSubstring.IndexOf("-", index + 1, TextEurosSubstring.Length - index - 1)
+            If spaceIndex &gt; index And spaceIndex &gt; dashIndex Then
+                index = spaceIndex
+                isSpaceChar = True
+            Else
+                If dashIndex &gt; index Then
+                    index = dashIndex
+                    isSpaceChar = False
+                Else
+                    Exit While
+                End If
+            End If
+        End While
+
+        If TextBoxNumber = 1 And isSpaceChar Then
+                Return index
+        Else
+                Return index + 1
+        End If
+    End Function
+
+    Function TextEurosFullString(ByVal TextEuros As String, ByVal FractionalUnits As String) As String
+        
+        Dim ReturnString As String
+
+        If TextEuros.Length &gt; 0 Then
+            ReturnString = TextEuros + " EUROS "
+        End If
+
+        If FractionalUnits.Length &gt; 0 Then
+            ReturnString += FractionalUnits + "c"
+        End If
+
+        Return ReturnString
+
+    End Function
+
+    Function TextEuros1Content(ByVal TextEuros As String) As String
+        Dim splitIndex As Integer = TextEurosSplitIndex(TextEuros, 1)
+
+        If splitIndex = -1 Then
+                Return TextEuros
+        Else
+                Return TextEuros.Substring(0, splitIndex )
+        End If
+    End Function
+
+    Function TextEuros2Content(ByVal TextEuros As String) As String
+        Dim splitIndex As Integer = TextEurosSplitIndex(TextEuros, 2)
+
+        If splitIndex = -1 Then
+                Return ""
+        Else
+                Return TextEuros.Substring(splitIndex, TextEuros.Length - splitIndex)
+        End If
+    End Function</Code>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>6948690a-bfef-4cb6-8f41-50bbf2a5a6a5</rd:ReportID>
+</Report>
